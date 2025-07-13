@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "217863344386",
+    "project_id": "pdyn-51b6d",
+    "storage_bucket": "pdyn-51b6d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217863344386:android:74e3b8bd565f10aa37b21b",
+        "android_client_info": {
+          "package_name": "com.pdynapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY0NUGTRKRdvkfCaM-pkvPZ5YVgsThfJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
