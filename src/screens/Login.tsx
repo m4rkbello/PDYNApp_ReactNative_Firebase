@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     View,
     Text,
@@ -11,19 +11,22 @@ import {
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
 import { loginUser } from '../services/firebaseConfig';
+import { AuthContext } from '../context/AuthContext'; // ✅ import context
 
 type Props = {
     navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
 };
 
-const LoginScreen: React.FC<Props> = ({ navigation }) => {
+const Login: React.FC<Props> = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { setUser } = useContext(AuthContext); // ✅ get setUser
 
     const handleLogin = async () => {
         try {
-            await loginUser(email, password);
-            navigation.replace('Home');
+            const userCredential = await loginUser(email, password);
+            setUser(userCredential.user); // ✅ save user to context
+            // No need to call navigation.replace('Home') anymore
         } catch (error: any) {
             Alert.alert('Login Error', error.message);
         }
@@ -31,7 +34,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Login</Text>
+            <Text style={styles.title}>PDYN</Text>
 
             <TextInput
                 placeholder="Email"
@@ -72,4 +75,4 @@ const styles = StyleSheet.create({
     link: { color: 'blue', marginTop: 20, textAlign: 'center' },
 });
 
-export default LoginScreen;
+export default Login;

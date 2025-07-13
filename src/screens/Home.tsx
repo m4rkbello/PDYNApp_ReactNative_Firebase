@@ -14,14 +14,20 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text>Welcome, {auth().currentUser?.email}</Text>
+            <Text style={styles.textData}>Welcome, {auth().currentUser?.email}</Text>
             <Button title="Logout" onPress={logout} />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: { padding: 20, marginTop: 80 },
+    container: {
+        padding: 20,
+        marginTop: 80
+    },
+    textData: {
+        fontSize: 30
+    }
 });
 
 export default HomeScreen;

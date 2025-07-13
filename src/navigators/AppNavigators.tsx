@@ -1,22 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginScreen from '../screens/Login';
 import RegisterScreen from '../screens/Register';
 import HomeScreen from '../screens/Home';
-import { RootStackParamList } from '../types/navigation';
+import ProfileScreen from '../screens/Profile';
+import { AuthContext } from '../context/AuthContext';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function MainDrawer() {
+    return (
+        <Drawer.Navigator>
+            <Drawer.Screen name="Profile" component={ProfileScreen} />
+            <Drawer.Screen name="Home" component={HomeScreen} />
+        </Drawer.Navigator>
+    );
+}
 
 export default function AppNavigator() {
+    const { user } = useContext(AuthContext);
+
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
-                <Stack.Screen name="Login" component={LoginScreen} />
-                <Stack.Screen name="Register" component={RegisterScreen} />
-                <Stack.Screen name="Home" component={HomeScreen} />
-            </Stack.Navigator>
+            {user ? (
+                <MainDrawer />
+            ) : (
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name="Login" component={LoginScreen} />
+                    <Stack.Screen name="Register" component={RegisterScreen} />
+                </Stack.Navigator>
+            )}
         </NavigationContainer>
     );
 }
