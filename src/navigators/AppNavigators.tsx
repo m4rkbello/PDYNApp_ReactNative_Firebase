@@ -20,12 +20,59 @@ const Drawer = createDrawerNavigator();
 
 function MainDrawer() {
     return (
-        <Drawer.Navigator>
-            <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Profile" component={ProfileScreen} />
-            <Drawer.Screen name="User List" component={UserListScreen} />
-            <Drawer.Screen name="AddUser" component={AddUserScreen} />
-            <Drawer.Screen name="EditUser" component={EditUserScreen} />
+        <Drawer.Navigator
+            screenOptions={{
+                drawerStyle: {
+                    backgroundColor: 'black', // Black background for drawer
+                    width: 500,
+                },
+                drawerActiveTintColor: '#a2ff00', // Green for selected item text
+                drawerActiveBackgroundColor: 'rgba(162, 255, 0, 0.1)', // Slight green tint for selected bg
+                drawerInactiveTintColor: 'white', // White for inactive items
+                drawerLabelStyle: {
+                    fontSize: 16,
+                },
+                headerStyle: {
+                    backgroundColor: 'black', // Black header
+                },
+                headerTintColor: '#a2ff00', // Green header text
+            }}
+        >
+            <Drawer.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{
+                    drawerLabel: 'Home',
+                }}
+            />
+            <Drawer.Screen
+                name="Profile"
+                component={ProfileScreen}
+                options={{
+                    drawerLabel: 'Profile',
+                }}
+            />
+            <Drawer.Screen
+                name="User List"
+                component={UserListScreen}
+                options={{
+                    drawerLabel: 'User List',
+                }}
+            />
+            <Drawer.Screen
+                name="AddUser"
+                component={AddUserScreen}
+                options={{
+                    drawerLabel: 'Add User',
+                }}
+            />
+            <Drawer.Screen
+                name="EditUser"
+                component={EditUserScreen}
+                options={{
+                    drawerLabel: 'Edit User',
+                }}
+            />
         </Drawer.Navigator>
     );
 }
