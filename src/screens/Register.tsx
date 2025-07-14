@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
+import React, { useState, useContext } from 'react';
+import {
+    View, Text, TextInput, Button, Alert, StyleSheet
+} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/navigation';
+import { AuthContext } from '../context/AuthContext';
 
 type Props = {
-    navigation: NativeStackNavigationProp<any, any>;
+    navigation: NativeStackNavigationProp<RootStackParamList, 'Register'>;
 };
 
 const RegisterScreen: React.FC<Props> = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const authContext = useContext(AuthContext);
 
     const handleRegister = async () => {
         try {
-            const userCredential = await auth().createUserWithEmailAndPassword(email, password);
-            await firestore().collection('users').doc(userCredential.user.uid).set({
-                email,
-                createdAt: new Date(),
-            });
-            navigation.replace('Home');
+            await authContext?.register(email, password);
         } catch (error: any) {
             Alert.alert('Registration Error', error.message);
         }

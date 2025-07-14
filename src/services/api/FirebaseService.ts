@@ -1,7 +1,7 @@
 // services/FirebaseService.ts
 import firestore from '@react-native-firebase/firestore';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import { User } from '../types/Users';
+import { User } from '../../types/Users';
 import auth from '@react-native-firebase/auth';
 
 export class FirebaseService<T extends { id?: string }> {
