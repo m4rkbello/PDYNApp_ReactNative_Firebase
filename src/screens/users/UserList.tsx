@@ -18,7 +18,7 @@ export default function UserList({ navigation }) {
 
     const renderItem = ({ item }: any) => (
         <View style={styles.item}>
-            <Text>{item.name} - {item.email}</Text>
+            <Text style={styles.flatList}>{item.name} - {item.email}</Text>
             <Button title="Edit" onPress={() => navigation.navigate('EditUser', { user: item })} />
             <Button title="Delete" color="red" onPress={() => handleDelete(item.id)} />
         </View>
@@ -44,5 +44,8 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         borderWidth: 1,
         borderRadius: 5,
+    },
+    flatList: {
+        fontSize: 30,
     }
 });

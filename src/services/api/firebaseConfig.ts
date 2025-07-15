@@ -50,5 +50,5 @@ export const firestoreService = {
 };
 
 // Optional shortcut
-export const createUser = (data: { name: string; email: string }) =>
+export const createUser = (data: any) =>
     firestoreService.createDocument('users', data);
